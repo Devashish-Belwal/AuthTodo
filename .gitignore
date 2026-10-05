@@ -1,3 +1,5 @@
+/project-context
+
 # Dependencies
 /node_modules
 /.pnp
@@ -48,3 +50,5 @@ test-results/
 *.njsproj
 *.sln
 *.sw?
+
+project-context/
