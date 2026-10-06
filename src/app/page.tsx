@@ -8,7 +8,7 @@ export default function LoginPage() {
         <CardContent className="p-10 text-center space-y-6">
           <h1 className="text-4xl font-extrabold tracking-tight text-slate-900">AuthTodo</h1>
           <p className="text-slate-500 text-lg">Simple Todo Manager</p>
-          <Button className="w-full py-6 text-base font-semibold" variant="outline">Continue with Google</Button>
+          <a href="/api/auth/google" className="inline-block w-full"><Button className="w-full py-6 text-base font-semibold" variant="outline">Continue with Google</Button></a>
         </CardContent>
       </Card>
     </main>
