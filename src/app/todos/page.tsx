@@ -288,7 +288,7 @@ export default function TodosPage() {
     <main className="min-h-screen bg-slate-50 text-slate-900 antialiased">
       <header className="sticky top-0 z-10 bg-white/80 backdrop-blur border-b border-slate-200/60 px-6 py-4 flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-extrabold tracking-tight text-slate-900">AuthTodo</h1>
+          <h1 className="text-2xl font-extrabold tracking-tight text-slate-900">AuthTodo 2</h1>
           <p className="text-xs text-slate-500 font-medium">Your personal task dashboard</p>
         </div>
         <div className="flex items-center gap-3">
