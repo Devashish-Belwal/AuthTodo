@@ -5,9 +5,7 @@ WORKDIR /app
 COPY package.json bun.lock ./
 RUN bun install --frozen-lockfile
 COPY . .
-RUN --mount=type=secret,id=mongodb_uri,dst=/run/secrets/mongodb_uri \
-    set -a; . /run/secrets/mongodb_uri; set +a; \
-    bun run build
+RUN bun run build
 
 # Production runtime stage
 FROM oven/bun:1-alpine AS runner

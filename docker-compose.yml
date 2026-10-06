@@ -1,14 +1,8 @@
-secrets:
-  mongodb_uri:
-    file: .env
-
 services:
   app:
     build:
       context: .
       dockerfile: Dockerfile
-      secrets:
-        - mongodb_uri
     container_name: authtodo_app
     ports:
       - "3000:3000"
