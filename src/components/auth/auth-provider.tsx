@@ -15,24 +15,20 @@ interface AuthCtx {
 
 const AuthContext = createContext<AuthCtx | null>(null);
 
+import { performRefresh } from "@/lib/refresh-flight";
+
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [accessToken, setAccessToken] = useState<string | null>(null);
   const [user, setUser] = useState<AuthCtx["user"]>(null);
   const [loading, setLoading] = useState(false);
 
   const refresh = useCallback(async (): Promise<boolean> => {
-    try {
-      const res = await fetch("/api/auth/refresh", { method: "POST", credentials: "include" });
-      if (!res.ok) return false;
-      const data = await res.json();
-      if (data.accessToken) {
-        setAccessToken(data.accessToken);
-        return true;
-      }
-      return false;
-    } catch {
-      return false;
+    const token = await performRefresh();
+    if (token) {
+      setAccessToken(token);
+      return true;
     }
+    return false;
   }, []);
 
   const logout = useCallback(async () => {

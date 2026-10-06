@@ -1,6 +1,7 @@
 "use client";
 import { useCallback } from "react";
 import { useAuth } from "@/components/auth/auth-provider";
+import { performRefresh } from "@/lib/refresh-flight";
 
 export function useAuthFetch() {
   const { accessToken, setAccessToken, setUser } = useAuth();
@@ -13,38 +14,23 @@ export function useAuthFetch() {
     let res = await fetch(url, { ...options, headers, credentials: "include" });
 
     if (res.status === 401) {
-      const refreshRes = await fetch("/api/auth/refresh", { method: "POST", credentials: "include" });
-      if (refreshRes.ok) {
-        try {
-          const data = await refreshRes.json();
-          if (data.accessToken) {
-            setAccessToken(data.accessToken);
-            const retryHeaders = new Headers(options?.headers || {});
-            retryHeaders.set("Authorization", `Bearer ${data.accessToken}`);
-            res = await fetch(url, { ...options, headers: retryHeaders, credentials: "include" });
-          } else {
-            setAccessToken(null);
-            setUser(null);
-            window.location.href = "/login";
-            throw new Error("Refresh missing token");
-          }
-        } catch {
-          setAccessToken(null);
-          setUser(null);
-          window.location.href = "/login";
-          throw new Error("Refresh parse failed");
-        }
+      const newToken = await performRefresh();
+      if (newToken) {
+        setAccessToken(newToken);
+        const retryHeaders = new Headers(options?.headers || {});
+        retryHeaders.set("Authorization", `Bearer ${newToken}`);
+        res = await fetch(url, { ...options, headers: retryHeaders, credentials: "include" });
       } else {
         setAccessToken(null);
         setUser(null);
-        window.location.href = "/login";
+        if (window.location.pathname !== "/login") {
+          window.location.href = "/login";
+        }
         throw new Error("Refresh failed");
       }
     }
 
-    // If retried request also returns 401, do not refresh/retry again
     if (res.status === 401) {
-      // Already retried once above; just return the final 401 response
       return res;
     }
 

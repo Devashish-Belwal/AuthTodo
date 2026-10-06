@@ -77,7 +77,7 @@ export async function POST(req: Request) {
         status: 200,
         headers: {
           "Content-Type": "application/json",
-          "Set-Cookie": `refresh_token=${newRaw}; HttpOnly; SameSite=Lax; Path=/api/auth; Max-Age=${Math.round(expiresMs / 1000)}${!req.url.includes("localhost") ? "; Secure" : ""}`,
+          "Set-Cookie": `refresh_token=${newRaw}; HttpOnly; SameSite=Lax; Path=/; Max-Age=${Math.round(expiresMs / 1000)}${process.env.NODE_ENV === "production" ? "; Secure" : ""}`,
         },
       });
     } catch (txErr: any) {

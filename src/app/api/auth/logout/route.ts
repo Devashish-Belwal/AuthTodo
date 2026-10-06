@@ -16,7 +16,7 @@ export async function POST(req: Request) {
         await record.save();
       }
     }
-    const clearCookie = "refresh_token=; HttpOnly; SameSite=Lax; Path=/api/auth; Max-Age=0";
+    const clearCookie = `refresh_token=; HttpOnly; SameSite=Lax; Path=/; Max-Age=0${process.env.NODE_ENV === "production" ? "; Secure" : ""}`;
     return Response.json({ ok: true }, { status: 200, headers: { "Set-Cookie": clearCookie } });
   } catch {
     return Response.json({ error: "Logout failed" }, { status: 500 });

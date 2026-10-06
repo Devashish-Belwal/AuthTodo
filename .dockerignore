@@ -1,0 +1,14 @@
+node_modules
+.next
+.git
+.env
+.env.*
+!.env.example
+/project-context
+/playwright-report/
+/coverage/
+*.pem
+.vscode/*
+.idea/
+.DS_Store
+npm-debug.log*
