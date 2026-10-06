@@ -3,7 +3,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: ${IMAGE_REF:-devashishbelwal/authtodo:latest}
+    image: devashishbelwal/authtodo:${IMAGE_TAG:-latest}
     container_name: authtodo_app
     ports:
       - "3000:3000"
