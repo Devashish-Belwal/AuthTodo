@@ -89,7 +89,7 @@ export async function GET(req: Request) {
     const finalCookie = isLocalhost ? cookieConfig : cookieConfig + "; Secure";
 
     const headers = new Headers();
-    headers.set("Location", new URL("/todos", req.url).toString());
+    headers.set("Location", "/todos");
     headers.append("Set-Cookie", clearCookie());
     headers.append("Set-Cookie", finalCookie);
 
