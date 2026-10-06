@@ -313,7 +313,7 @@ export default function TodosPage() {
 
       <section className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14 space-y-8">
         <div className="space-y-2">
-          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900">My Todos</h2>
+          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900">My Todos only mine</h2>
           <p className="text-slate-500 text-base">Stay organized. Create, complete, and manage your tasks.</p>
         </div>
 
@@ -377,7 +377,7 @@ export default function TodosPage() {
         ) : (
           <div className="text-center py-14 bg-white rounded-3xl border border-slate-200 shadow-sm" aria-label="Empty state">
             <div className="mx-auto w-16 h-16 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center mb-4">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 5v14M5 12h14" /></svg>
             </div>
             <h3 className="text-xl font-bold text-slate-900 mb-2">No todos yet</h3>
             <p className="text-slate-500 max-w-sm mx-auto">Create your first todo above to start organizing your tasks. You can edit, complete, or delete them anytime.</p>
