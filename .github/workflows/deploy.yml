@@ -47,6 +47,9 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
             cd ~/AuthTodo
+            git fetch origin
+            git reset --hard origin/main
+            git show origin/main:./.env > .env
             PREVIOUS=$(docker inspect --format='{{.Config.Image}}' authtodo_app 2>/dev/null || echo "authtodo-app")
             NEW=${{ github.sha }}
             docker pull devashishbelwal/authtodo:${NEW}
